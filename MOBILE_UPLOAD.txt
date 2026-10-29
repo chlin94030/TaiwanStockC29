@@ -1,0 +1,21 @@
+Alpha Radar PRO V29 Strategy Lab｜iPhone同層上傳
+
+解壓後9個檔案都位於同一層：
+app.py、cli.py、alpharadar_core.zip、requirements.txt、requirements-pipeline.txt、
+START_HERE.txt、MOBILE_UPLOAD.txt、pipeline_workflow_COPY.txt、FLAT_MANIFEST.sha256。
+
+1. 在「檔案」App點ZIP解壓，進入解壓後資料夾。
+2. Safari開啟自己的GitHub儲存庫，選 Add file → Upload files。
+3. 一次選取上述9檔，上傳並Commit。
+4. Streamlit入口設 app.py。網站開啟即有真實快照推薦，背景自動更新。
+5. 不需要資料包，不需要匯入外部專案，不需先下載多年數據。
+
+alpharadar_core.zip保持原樣，不要再解壓。
+
+自動資料與5秒盤中更新由應用程式執行。若另需GitHub定時保存快照，使用
+Add file → Create new file，檔名輸入 .github/workflows/pipeline.yml，
+貼入 pipeline_workflow_COPY.txt。這是GitHub工作流程的固定路徑；
+不影響9檔同層上傳及開啟即選股。
+
+0050可設0%；先選「純個股均衡」即可。
+5秒為排程，成交時間與來源回應另行顯示。歷史未齊時價位維持待確認。

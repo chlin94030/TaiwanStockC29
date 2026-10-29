@@ -1,0 +1,40 @@
+name: Alpha Radar 獨立市場快照
+
+on:
+  push:
+    branches: [main, master]
+    paths: ["kosto/**", "cli.py", "alpharadar_core.zip", ".github/workflows/pipeline.yml"]
+  schedule:
+    - cron: "20 6 * * 1-5"
+    - cron: "0 12 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: independent-market-snapshot
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements-pipeline.txt
+      - name: 取得最近有效快照（首次可略過）
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release download market-snapshot -p auto_market.json.gz -D artifacts --clobber || true
+      - name: 更新市場與研究報告
+        run: python cli.py refresh-market
+      - name: 儲存快照
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view market-snapshot >/dev/null 2>&1 || gh release create market-snapshot --title "Alpha Radar market snapshot" --notes "獨立自動行情快照" --latest=false
+          gh release upload market-snapshot artifacts/auto_market.json.gz artifacts/AlphaRadar_Research_Report.html --clobber
