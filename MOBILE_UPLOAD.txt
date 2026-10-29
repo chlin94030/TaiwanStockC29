@@ -1,4 +1,4 @@
-Alpha Radar PRO V29 Strategy Lab｜iPhone同層上傳
+Alpha Radar PRO V30 Strategy Lab｜iPhone同層上傳
 
 解壓後9個檔案都位於同一層：
 app.py、cli.py、alpharadar_core.zip、requirements.txt、requirements-pipeline.txt、

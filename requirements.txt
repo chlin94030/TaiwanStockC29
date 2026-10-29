@@ -1,4 +1,4 @@
-# Alpha Radar PRO V28: Python 3.12 recommended; pinned UI/research dependencies
+# Alpha Radar PRO V30: Python 3.12 recommended; pinned UI/research dependencies
 numpy==2.3.5
 pandas==2.3.3
 pyarrow==22.0.0
